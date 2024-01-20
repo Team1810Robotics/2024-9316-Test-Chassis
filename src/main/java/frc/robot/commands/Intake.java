@@ -21,7 +21,7 @@ public class Intake extends Command {
 
     @Override
     public void execute() {
-        intakeSubsystem.intake();
+        intakeOperator();
     }
 
     /*This function will first check to see if there is a note in the intake, 
