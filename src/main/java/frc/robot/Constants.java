@@ -19,13 +19,11 @@ public class Constants {
     }
 
     public class IntakeConstants {
-        public static final int LEFT_INTAKE = 2;
-        public static final int RIGHT_INTAKE = 3;
+        public static final int INTAKE_MOTORS = 2;
 
-        public static final int LEFT_ADJUSTER = 4;
-        public static final int RIGHT_ADJUSTER = 5;
+        public static final int ADJUSTER_MOTORS = 3;
 
-        public static final int INTAKE_PIVITOR = 6;
+        public static final int INTAKE_PIVITOR = 4;
 
         //TODO: Double check these values
         public static final int UPPER_LS = 0;
