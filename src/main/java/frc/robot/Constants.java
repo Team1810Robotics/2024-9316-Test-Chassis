@@ -32,12 +32,6 @@ public class Constants {
         public static final int LOWER_LS = 1;
         public static final int NOTE_DETECTOR = 2;
 
-            public static final int UPPER_LS = 0;
-
-            public static final int LOWER_LS = 1;
-
-            public static final int NOTE_DETECTOR = 2;
-
 
 
         }

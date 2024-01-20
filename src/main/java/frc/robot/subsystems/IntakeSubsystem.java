@@ -21,9 +21,9 @@ public class IntakeSubsystem extends SubsystemBase {
 
 
     public IntakeSubsystem() {
-        intakeMotors = new Relay(IntakeConstants.INTAKE_MOTORS);
+        intakeMotors = new Relay(IntakeConstants.LEFT_INTAKE);
 
-        adjusterMotors = new Relay(IntakeConstants.ADJUSTER_MOTORS);
+        adjusterMotors = new Relay(IntakeConstants.LEFT_ADJUSTER);
 
         intakePivitor = new Talon(IntakeConstants.INTAKE_PIVITOR);
 
@@ -40,14 +40,6 @@ public class IntakeSubsystem extends SubsystemBase {
 
     }
 
-    public void pivotUp() {
-        
-    }
-
-    public void pivotDown() {
-        
-    }
-
     public boolean getNoteDetector() {
             return noteDetector.get();
     }
@@ -62,10 +54,19 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public void pivotUp() {
-        //TODO: Add pivot function
+        if (getUpperLS()) {
+            intakePivitor.set(0);
+        } else {
+            intakePivitor.set(0.1);
+        }
     }
 
     public void pivotDown() {
+        if (getLowerLS()) {
+            intakePivitor.set(0);
+        } else {
+            intakePivitor.set(0.1);
+        }
 
     }
 
