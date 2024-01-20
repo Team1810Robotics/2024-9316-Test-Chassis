@@ -41,30 +41,11 @@ public class IntakeSubsystem extends SubsystemBase {
     public void intake() {
         leftIntake.set(1);
         leftAdjuster.set(1);
-    }
 
-    // //Obtains the current values of both limit switches, then moves the intake accordingly.
-    public void pivotUp() {
-        //TODO: Add pivot function
-    }
-
-    public void pivotDown() {
-
-    }
-
-
-
-
-    public boolean getLowerLS() {
-        return lowerLS.get();
-    }
-
-    public boolean getUpperLS() {
-        return upperLS.get();
     }
 
     public boolean getNoteDetector() {
-        return noteDetector.get();
+            return noteDetector.get();
     }
 
     public double getIntakeMotors() {
@@ -75,6 +56,23 @@ public class IntakeSubsystem extends SubsystemBase {
         leftIntake.stopMotor();
         leftAdjuster.stopMotor();
     }
+
+    public void pivotUp() {
+        //TODO: Add pivot function
+    }
+
+    public void pivotDown() {
+
+    }
+
+    public boolean getLowerLS() {
+        return lowerLS.get();
+    }
+
+    public boolean getUpperLS() {
+        return upperLS.get();
+    }
+
 
     public void stop(){
         leftIntake.stopMotor();
