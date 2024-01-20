@@ -43,6 +43,14 @@ public class IntakeSubsystem extends SubsystemBase {
 
     }
 
+    public void pivotUp() {
+        
+    }
+
+    public void pivotDown() {
+        
+    }
+
     public boolean getNoteDetector() {
             return noteDetector.get();
     }
