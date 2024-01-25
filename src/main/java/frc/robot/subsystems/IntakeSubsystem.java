@@ -40,9 +40,10 @@ public class IntakeSubsystem extends SubsystemBase {
 
     }
 
-    public boolean getNoteDetector() {
-            return noteDetector.get();
+    public void reverseIntake() {
+        intakeMotors.set(Relay.Value.kReverse);
     }
+
 
     public void stopIntake() {
         intakeMotors.stopMotor();
@@ -64,6 +65,11 @@ public class IntakeSubsystem extends SubsystemBase {
             intakePivitor.set(Relay.Value.kForward);
         }
 
+    }
+
+
+    public boolean getNoteDetector() {
+        return noteDetector.get();
     }
 
     public boolean getLowerLS() {
