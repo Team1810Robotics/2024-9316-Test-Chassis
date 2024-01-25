@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import java.net.http.HttpClient.Redirect;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Relay;
@@ -34,6 +33,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     }
 
+    //TODO: Check to see which way the motors need to turn (applies for everything)
     public void intake() {
         intakeMotors.set(Relay.Value.kForward);
         adjusterMotors.set(Relay.Value.kForward);
@@ -42,10 +42,6 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public boolean getNoteDetector() {
             return noteDetector.get();
-    }
-
-    public Relay.Value getIntakeMotors() {
-        return intakeMotors.get();
     }
 
     public void stopIntake() {

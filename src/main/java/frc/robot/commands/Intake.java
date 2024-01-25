@@ -8,13 +8,9 @@ public class Intake extends Command {
 
     private IntakeSubsystem intakeSubsystem;
 
-    // private Relay.Value intakePrevious;
-
 
     public Intake(IntakeSubsystem intakeSubsystem) {
         this.intakeSubsystem = intakeSubsystem;
-
-        // intakePrevious = intakeSubsystem.getIntakeMotors();
 
         addRequirements(intakeSubsystem);
     }
@@ -25,11 +21,9 @@ public class Intake extends Command {
     }
 
     /*This function will first check to see if there is a note in the intake, 
-    and if the intake was moving. If that's true, it will stop the intake and pivot up. 
-    Then it will check if there is not a note in the inttake and if the intake was not moving, 
-    if it wasn't, it pivots down and begins intaking. If there is nno note in there and the intake was intaking, it keeps intaking.*/
+    if there is, it will stop the intake and pivot up. 
+    If there isn't, it pivots down and begins intaking.*/
     public void intakeOperator() {
-        // Relay.Value intakeCurrent = intakeSubsystem.getIntakeMotors();
         boolean noteCurrent = intakeSubsystem.getNoteDetector();
 
         if (noteCurrent == true) {
@@ -39,17 +33,6 @@ public class Intake extends Command {
             intakeSubsystem.pivotDown();
           intakeSubsystem.intake();
         }
-
-        // if (noteCurrent && intakePrevious == Relay.Value.kForward){
-        //     intakeSubsystem.stopIntake();
-        //     intakeSubsystem.pivotUp();
-        // } else if(!noteCurrent && intakePrevious == Relay.Value.kOff){
-        //     intakeSubsystem.pivotDown();
-        //     intakeSubsystem.intake();
-        // } else if(!noteCurrent && intakePrevious == Relay.Value.kForward){
-        //     intakeSubsystem.intake();
-        // }
-        // intakePrevious = intakeCurrent;
     }
 
     @Override
