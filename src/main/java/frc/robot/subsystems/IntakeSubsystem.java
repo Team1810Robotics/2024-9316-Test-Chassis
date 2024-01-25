@@ -1,19 +1,18 @@
 package frc.robot.subsystems;
 
+
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-    private Talon leftIntake;
-    private Talon rightIntake;
+    private Relay intakeMotors;
 
-    private Talon leftAdjuster;
-    private Talon rightAdjuster;
+    private Relay adjusterMotors;
 
-    private Talon intakePivitor;
+    private Relay intakePivitor;
 
     private DigitalInput upperLS;
     private DigitalInput lowerLS;
@@ -21,48 +20,56 @@ public class IntakeSubsystem extends SubsystemBase {
 
 
     public IntakeSubsystem() {
-        leftIntake = new Talon(IntakeConstants.LEFT_INTAKE);
-        rightIntake = new Talon(IntakeConstants.RIGHT_INTAKE);
+        intakeMotors = new Relay(IntakeConstants.INTAKE_MOTORS);
 
-        leftAdjuster = new Talon(IntakeConstants.LEFT_ADJUSTER);
-        rightAdjuster = new Talon(IntakeConstants.RIGHT_ADJUSTER);
+        adjusterMotors = new Relay(IntakeConstants.ADJUSTER_MOTORS);
 
-        intakePivitor = new Talon(IntakeConstants.INTAKE_PIVITOR);
+        intakePivitor = new Relay(IntakeConstants.INTAKE_PIVITOR);
 
         upperLS = new DigitalInput(IntakeConstants.UPPER_LS);
         lowerLS = new DigitalInput(IntakeConstants.LOWER_LS);
         noteDetector = new DigitalInput(IntakeConstants.NOTE_DETECTOR);
 
-        leftIntake.addFollower(rightIntake);
-        leftAdjuster.addFollower(rightAdjuster);
 
     }
 
+    //TODO: Check to see which way the motors need to turn (applies for everything)
     public void intake() {
-        leftIntake.set(1);
-        leftAdjuster.set(1);
+        intakeMotors.set(Relay.Value.kForward);
+        adjusterMotors.set(Relay.Value.kForward);
 
     }
 
-    public boolean getNoteDetector() {
-            return noteDetector.get();
+    public void reverseIntake() {
+        intakeMotors.set(Relay.Value.kReverse);
     }
 
-    public double getIntakeMotors() {
-        return leftIntake.get();
-    }
 
     public void stopIntake() {
-        leftIntake.stopMotor();
-        leftAdjuster.stopMotor();
+        intakeMotors.stopMotor();
+        adjusterMotors.stopMotor();
     }
 
     public void pivotUp() {
-        //TODO: Add pivot function
+        if (getUpperLS()) {
+            intakePivitor.set(Relay.Value.kOff);
+        } else {
+            intakePivitor.set(Relay.Value.kForward);
+        }
     }
 
     public void pivotDown() {
+        if (getLowerLS()) {
+            intakePivitor.set(Relay.Value.kOff);
+        } else {
+            intakePivitor.set(Relay.Value.kForward);
+        }
 
+    }
+
+
+    public boolean getNoteDetector() {
+        return noteDetector.get();
     }
 
     public boolean getLowerLS() {
@@ -75,8 +82,8 @@ public class IntakeSubsystem extends SubsystemBase {
 
 
     public void stop(){
-        leftIntake.stopMotor();
-        leftAdjuster.stopMotor();
+        intakeMotors.stopMotor();
+        intakeMotors.stopMotor();
 
         intakePivitor.stopMotor();
     }

@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.IntakeSubsystem;
 
@@ -7,39 +8,38 @@ public class Intake extends Command {
 
     private IntakeSubsystem intakeSubsystem;
 
-    private double intakePrevious;
+    private boolean bButton;
 
 
-    public Intake(IntakeSubsystem intakeSubsystem) {
+    public Intake(boolean bButton, IntakeSubsystem intakeSubsystem) {
         this.intakeSubsystem = intakeSubsystem;
-
-        intakePrevious = intakeSubsystem.getIntakeMotors();
+        this.bButton = bButton;
 
         addRequirements(intakeSubsystem);
     }
 
     @Override
     public void execute() {
-        intakeOperator();
+        if (bButton == true) {
+            intakeSubsystem.reverseIntake();
+        } else {
+            intakeOperator();
+        }
     }
 
     /*This function will first check to see if there is a note in the intake, 
-    and if the intake was moving. If that's true, it will stop the intake and pivot up. 
-    Then it will check if there is not a note in the inttake and if the intake was not moving, 
-    if it wasn't, it pivots down and begins intaking. If there is nno note in there and the intake was intaking, it keeps intaking.*/
+    if there is, it will stop the intake and pivot up. 
+    If there isn't, it pivots down and begins intaking.*/
     public void intakeOperator() {
-        double intakeCurrent = intakeSubsystem.getIntakeMotors();
         boolean noteCurrent = intakeSubsystem.getNoteDetector();
-        if (noteCurrent && intakePrevious > 0){
-            intakeSubsystem.stopIntake();
-            intakeSubsystem.pivotUp();
-        } else if(!noteCurrent && intakePrevious == 0){
+
+        if (noteCurrent == true) {
+          intakeSubsystem.pivotUp();
+          intakeSubsystem.stopIntake();
+        } else {
             intakeSubsystem.pivotDown();
-            intakeSubsystem.intake();
-        } else if(!noteCurrent && intakePrevious > 0){
-            intakeSubsystem.intake();
+          intakeSubsystem.intake();
         }
-        intakePrevious = intakeCurrent;
     }
 
     @Override
