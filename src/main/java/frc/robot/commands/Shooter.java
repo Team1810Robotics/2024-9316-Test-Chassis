@@ -9,12 +9,10 @@ public class Shooter extends Command {
     private ShooterSubsystem shooterSubsystem;
     private IntakeSubsystem intakeSubsystem;
 
-    private boolean leftBumper;
-    private boolean rightBumper;
+    private boolean shotChoice;
 
-    public Shooter(boolean leftBumper, boolean rightBumper, ShooterSubsystem shooterSubsystem, IntakeSubsystem intakeSubsystem){
-        this.leftBumper = leftBumper;
-        this.rightBumper = rightBumper;
+    public Shooter(boolean shotChoice, ShooterSubsystem shooterSubsystem, IntakeSubsystem intakeSubsystem){
+        this.shotChoice = shotChoice;
         this.shooterSubsystem = shooterSubsystem;
         this.intakeSubsystem = intakeSubsystem;
 
@@ -23,29 +21,21 @@ public class Shooter extends Command {
 
     @Override
     public void execute(){
-        if (leftBumper) {
-            shooterSubsystem.shootAmp();
+        shooterSubsystem.shoot(shotChoice);
 
-            new WaitCommand(1);
+        new WaitCommand(1);
 
-            intakeSubsystem.intake();
-        } else if(rightBumper){
-            shooterSubsystem.shootSpeaker();
+        intakeSubsystem.intake();
 
-            new WaitCommand(1);
-
-            intakeSubsystem.intake();
-        }
+        new WaitCommand(.5);
     }
 
+    @Override
     public boolean isFinished(){
-        if (leftBumper || rightBumper) {
-            return false;
-        } else {
-            return true;
-        }
+        return true; //TODO: this
     }
 
+    @Override
     public void end(boolean interrupted){
         shooterSubsystem.stop();
     }

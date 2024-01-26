@@ -15,15 +15,17 @@ public class ShooterSubsystem extends SubsystemBase{
     
     }
 
-    public void shootSpeaker(){
-        leftShooterMotors.set(1);
-        rightShooterMotors.set(-1);
+    public void shoot(boolean shotChoice) {
+        if (shotChoice) {
+            leftShooterMotors.set(1);
+            rightShooterMotors.set(-1);
+        } else {
+            leftShooterMotors.set(.25);
+            rightShooterMotors.set(-.25);
+        }
     }
 
-    public void shootAmp(){
-        leftShooterMotors.set(.25);
-        rightShooterMotors.set(-.25);
-    }
+    
 
     public void stop(){
         leftShooterMotors.stopMotor();

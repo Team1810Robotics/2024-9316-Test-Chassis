@@ -48,8 +48,8 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    manipulatorXbox_LB.onTrue(new Shooter(manipulatorXbox_LB.getAsBoolean(), manipulatorXbox_RB.getAsBoolean(), shooterSubsystem, intakeSubsystem));
-    manipulatorXbox_RB.onTrue(new Shooter(manipulatorXbox_LB.getAsBoolean(), manipulatorXbox_RB.getAsBoolean(), shooterSubsystem, intakeSubsystem));
+    manipulatorXbox_LB.onTrue(new Shooter(false, shooterSubsystem, intakeSubsystem));
+    manipulatorXbox_RB.onTrue(new Shooter(true, shooterSubsystem, intakeSubsystem));
   }
 
   public Command getAutonomousCommand() {
