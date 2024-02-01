@@ -1,8 +1,8 @@
 package frc.robot.subsystems;
 
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
 
@@ -12,7 +12,6 @@ public class IntakeSubsystem extends SubsystemBase {
 
 
     private Relay adjusterMotors;
-
 
     private Relay intakePivitor;
 
@@ -33,17 +32,18 @@ public class IntakeSubsystem extends SubsystemBase {
         noteDetector = new DigitalInput(IntakeConstants.NOTE_DETECTOR);
 
 
-
     }
 
+    //TODO: Check to see which way the motors need to turn (applies for everything)
     public void intake() {
         intakeMotors.set(Relay.Value.kForward);
         adjusterMotors.set(Relay.Value.kForward);
     }
 
-    public boolean getNoteDetector() {
-            return noteDetector.get();
+    public void reverseIntake() {
+        intakeMotors.set(Relay.Value.kReverse);
     }
+
 
     public Relay.Value getIntakeMotors() {
         return intakeMotors.get();
@@ -55,11 +55,25 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public void pivotUp() {
-        //TODO: Add pivot function
+        if (getUpperLS()) {
+            intakePivitor.set(Relay.Value.kOff);
+        } else {
+            intakePivitor.set(Relay.Value.kForward);
+        }
     }
 
     public void pivotDown() {
+        if (getLowerLS()) {
+            intakePivitor.set(Relay.Value.kOff);
+        } else {
+            intakePivitor.set(Relay.Value.kForward);
+        }
 
+    }
+
+
+    public boolean getNoteDetector() {
+        return noteDetector.get();
     }
 
     public boolean getLowerLS() {
@@ -73,6 +87,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void stop(){
         intakeMotors.stopMotor();
+
         adjusterMotors.stopMotor();
 
         intakePivitor.stopMotor();
