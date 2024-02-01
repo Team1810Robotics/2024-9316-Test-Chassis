@@ -7,8 +7,9 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class Intake extends Command {
 
     private IntakeSubsystem intakeSubsystem;
-
+  
     private boolean bButton;
+
 
 
     public Intake(boolean bButton, IntakeSubsystem intakeSubsystem) {
@@ -20,6 +21,7 @@ public class Intake extends Command {
 
     @Override
     public void execute() {
+
         if (bButton == true) {
             intakeSubsystem.reverseIntake();
         } else {
@@ -37,9 +39,14 @@ public class Intake extends Command {
           intakeSubsystem.pivotUp();
           intakeSubsystem.stopIntake();
         } else {
-            intakeSubsystem.pivotDown();
+          intakeSubsystem.pivotDown();
           intakeSubsystem.intake();
         }
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
     }
 
     @Override

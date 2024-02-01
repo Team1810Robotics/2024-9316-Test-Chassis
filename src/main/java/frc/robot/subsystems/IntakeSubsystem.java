@@ -10,6 +10,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     private Relay intakeMotors;
 
+
     private Relay adjusterMotors;
 
     private Relay intakePivitor;
@@ -37,13 +38,16 @@ public class IntakeSubsystem extends SubsystemBase {
     public void intake() {
         intakeMotors.set(Relay.Value.kForward);
         adjusterMotors.set(Relay.Value.kForward);
-
     }
 
     public void reverseIntake() {
         intakeMotors.set(Relay.Value.kReverse);
     }
 
+
+    public Relay.Value getIntakeMotors() {
+        return intakeMotors.get();
+    }
 
     public void stopIntake() {
         intakeMotors.stopMotor();
@@ -83,7 +87,8 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void stop(){
         intakeMotors.stopMotor();
-        intakeMotors.stopMotor();
+
+        adjusterMotors.stopMotor();
 
         intakePivitor.stopMotor();
     }
