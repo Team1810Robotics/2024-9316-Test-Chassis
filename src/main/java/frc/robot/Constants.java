@@ -28,18 +28,19 @@ public class Constants {
         public static final int INTAKE_PIVITOR = 2;
       
         //TODO: Double check these values
-        public static final int UPPER_LS = 0;
-        public static final int LOWER_LS = 1;
-        public static final int NOTE_DETECTOR = 2;
+        public static final int UPPER_LS = 5;
+        public static final int LOWER_LS = 6;
+        public static final int NOTE_DETECTOR = 7;
 
 
 
         }
     
     public class ShooterConstants{
-        public static final int LEFT_SHOOTER_MOTORS = 6;
-        public static final int RIGHT_SHOOTER_MOTORS = 7;
+        public static final int SHOOTER_MOTORS = 2;
+    }
 
-
+    public class ClimbConstants {
+        public static final int CLIMB_MOTOR = 3;    
     }
 }

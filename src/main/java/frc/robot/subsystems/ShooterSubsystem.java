@@ -5,30 +5,20 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants;
 
 public class ShooterSubsystem extends SubsystemBase{
-    private Talon leftShooterMotors;
-    private Talon rightShooterMotors;
+    private Talon shooterMotors;
+
 
     public ShooterSubsystem(){
-        leftShooterMotors = new Talon(ShooterConstants.LEFT_SHOOTER_MOTORS);
-        rightShooterMotors = new Talon(ShooterConstants.RIGHT_SHOOTER_MOTORS);
-
-    
+        shooterMotors = new Talon(ShooterConstants.SHOOTER_MOTORS);
     }
 
-    public void shoot(boolean shotChoice) {
-        if (shotChoice) {
-            leftShooterMotors.set(1);
-            rightShooterMotors.set(-1);
-        } else {
-            leftShooterMotors.set(.25);
-            rightShooterMotors.set(-.25);
-        }
+    public void shoot() {
+        shooterMotors.set(1);
     }
 
     
 
     public void stop(){
-        leftShooterMotors.stopMotor();
-        rightShooterMotors.stopMotor();
+        shooterMotors.stopMotor();
     }
 }   

@@ -46,15 +46,16 @@ public class RobotContainer {
         driveSubsystem)
     );
     
-    intakeSubsystem.setDefaultCommand(new Intake(manipulatorXbox_B.getAsBoolean(), intakeSubsystem));
+    // intakeSubsystem.setDefaultCommand(new Intake(manipulatorXbox_B.getAsBoolean(), intakeSubsystem));
 
     configureBindings();
   }
 
   private void configureBindings() {
 
-    manipulatorXbox_LB.onTrue(new Shooter(false, shooterSubsystem, intakeSubsystem));
-    manipulatorXbox_RB.onTrue(new Shooter(true, shooterSubsystem, intakeSubsystem));
+    manipulatorXbox_LB.whileTrue(new Intake(intakeSubsystem));
+    manipulatorXbox_RB.onTrue(new Shooter(shooterSubsystem, intakeSubsystem));
+
 
     manipulatorXbox_A.whileTrue(new Climb(true));
     manipulatorXbox_Y.whileTrue(new Climb(false));

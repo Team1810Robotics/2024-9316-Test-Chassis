@@ -8,25 +8,17 @@ public class Intake extends Command {
 
     private IntakeSubsystem intakeSubsystem;
   
-    private boolean bButton;
 
 
-
-    public Intake(boolean bButton, IntakeSubsystem intakeSubsystem) {
+    public Intake(IntakeSubsystem intakeSubsystem) {
         this.intakeSubsystem = intakeSubsystem;
-        this.bButton = bButton;
 
         addRequirements(intakeSubsystem);
     }
 
     @Override
     public void execute() {
-
-        if (bButton == true) {
-            intakeSubsystem.reverseIntake();
-        } else {
-            intakeOperator();
-        }
+        intakeSubsystem.intake();
     }
 
     /*This function will first check to see if there is a note in the intake, 
