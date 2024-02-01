@@ -39,7 +39,6 @@ public class IntakeSubsystem extends SubsystemBase {
     public void intake() {
         intakeMotors.set(Relay.Value.kForward);
         adjusterMotors.set(Relay.Value.kForward);
-
     }
 
     public boolean getNoteDetector() {

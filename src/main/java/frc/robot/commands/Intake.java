@@ -22,6 +22,7 @@ public class Intake extends Command {
     @Override
     public void execute() {
         intakeSubsystem.intake();
+        // System.out.println("test");
     }
 
     /* This function will first check to see if there is a note in the intake, 
@@ -41,6 +42,11 @@ public class Intake extends Command {
             intakeSubsystem.intake();
         }
         intakePrevious = intakeCurrent;
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
     }
 
     @Override
