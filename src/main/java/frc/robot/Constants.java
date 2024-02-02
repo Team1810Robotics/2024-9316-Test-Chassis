@@ -36,4 +36,10 @@ public class Constants {
         public static final int CLIMB_MOTOR = 4;
     }
     
+    public class ShooterConstants{
+        public static final int LEFT_SHOOTER_MOTORS = 6;
+        public static final int RIGHT_SHOOTER_MOTORS = 7;
+
+
+    }
 }
