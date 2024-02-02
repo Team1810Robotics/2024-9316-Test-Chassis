@@ -5,15 +5,20 @@ import frc.robot.subsystems.ClimbSubsystem;
 
 public class Climb extends Command {
 
-    boolean upDown;
-    ClimbSubsystem ClimbSubsystem = new ClimbSubsystem();
+    private boolean a_Input;
+    private boolean y_Input;
+    private ClimbSubsystem climbSubsystem;
 
-    public Climb (boolean upDown) {
-        this.upDown = upDown;
+    public Climb(ClimbSubsystem climbSubsystem, boolean a_Input, boolean y_Input) {
+        this.a_Input = a_Input;
+        this.y_Input = y_Input;
+        this.climbSubsystem = climbSubsystem;
+
+        addRequirements(climbSubsystem);
     }
 
     public void execute () {
-        ClimbSubsystem.Climb(upDown);
+        climbSubsystem.climb(a_Input, y_Input);
     }
     
 }

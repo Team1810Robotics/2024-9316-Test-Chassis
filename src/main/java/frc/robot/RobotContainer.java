@@ -30,8 +30,8 @@ public class RobotContainer {
 
   private XboxController xboxController = new XboxController(OperatorConstants.XBOX_CONTROLLER_PORT);
 
-  private final JoystickButton xboxButton_A = new JoystickButton(xboxController, 0);
-  private final JoystickButton xboxButton_Y = new JoystickButton(xboxController, 3);
+  private final JoystickButton manipulatorXbox_A = new JoystickButton(xboxController, 0);
+  private final JoystickButton manipulatorButton_Y = new JoystickButton(xboxController, 3);
   private final JoystickButton manipulatorXbox_B = new JoystickButton(xboxController, 1); //TODO: Double check this
 
   private final JoystickButton manipulatorXbox_LB = new JoystickButton(xboxController, 5);
@@ -45,18 +45,19 @@ public class RobotContainer {
         driveSubsystem)
     );
     
+    //TODO: BIG PROBLEM. Need to find a way to run both Intake and Shooter at the same time
     intakeSubsystem.setDefaultCommand(new Intake(manipulatorXbox_B.getAsBoolean(), intakeSubsystem));
+    shooterSubsystem.setDefaultCommand(new Shooter(shooterSubsystem, intakeSubsystem, manipulatorXbox_LB.getAsBoolean(), manipulatorXbox_RB.getAsBoolean()));
+
+    climbSubsystem.setDefaultCommand(new Climb(climbSubsystem, manipulatorXbox_A.getAsBoolean(), manipulatorButton_Y.getAsBoolean()));
 
     configureBindings();
   }
 
   private void configureBindings() {
 
-    manipulatorXbox_LB.onTrue(new Shooter(false, shooterSubsystem, intakeSubsystem));
-    manipulatorXbox_RB.onTrue(new Shooter(true, shooterSubsystem, intakeSubsystem));
 
-    xboxButton_A.whileTrue(new Climb(true));
-    xboxButton_Y.whileTrue(new Climb(false));
+
 
   }
 

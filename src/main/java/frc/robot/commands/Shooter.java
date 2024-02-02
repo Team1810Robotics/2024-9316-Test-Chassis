@@ -9,19 +9,25 @@ public class Shooter extends Command {
     private ShooterSubsystem shooterSubsystem;
     private IntakeSubsystem intakeSubsystem;
 
-    private boolean shotChoice;
+    private boolean lb_Input;
+    private boolean rb_Input;
 
-    public Shooter(boolean shotChoice, ShooterSubsystem shooterSubsystem, IntakeSubsystem intakeSubsystem){
-        this.shotChoice = shotChoice;
+
+    public Shooter(ShooterSubsystem shooterSubsystem, IntakeSubsystem intakeSubsystem, boolean lb_Input, boolean rb_Input){
         this.shooterSubsystem = shooterSubsystem;
         this.intakeSubsystem = intakeSubsystem;
+        this.lb_Input = lb_Input;
+        this.rb_Input = rb_Input;
 
         addRequirements(shooterSubsystem, intakeSubsystem);
+
     }
 
     @Override
     public void execute(){
-        shooterSubsystem.shoot(shotChoice);
+        intakeSubsystem.pivotDownShooter();
+
+        shooterSubsystem.shoot(rb_Input, lb_Input);
 
         new WaitCommand(1);
 
