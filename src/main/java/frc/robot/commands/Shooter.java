@@ -6,14 +6,12 @@ import frc.robot.subsystems.ShooterSubsystem;
 
 public class Shooter extends Command {
     private ShooterSubsystem shooterSubsystem;
-    private IntakeSubsystem intakeSubsystem;
 
 
-    public Shooter(ShooterSubsystem shooterSubsystem, IntakeSubsystem intakeSubsystem){
+    public Shooter(ShooterSubsystem shooterSubsystem){
         this.shooterSubsystem = shooterSubsystem;
-        this.intakeSubsystem = intakeSubsystem;
 
-        addRequirements(shooterSubsystem, intakeSubsystem);
+        addRequirements(shooterSubsystem);
     }
 
     @Override

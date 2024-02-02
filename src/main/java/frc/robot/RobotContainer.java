@@ -30,9 +30,9 @@ public class RobotContainer {
 
   private XboxController xboxController = new XboxController(OperatorConstants.XBOX_CONTROLLER_PORT);
 
-  private final JoystickButton manipulatorXbox_A = new JoystickButton(xboxController, 0);
-  private final JoystickButton manipulatorXbox_Y = new JoystickButton(xboxController, 3);
-  private final JoystickButton manipulatorXbox_B = new JoystickButton(xboxController, 1); //TODO: Double check this
+  private final JoystickButton manipulatorXbox_A = new JoystickButton(xboxController, 1);
+  private final JoystickButton manipulatorXbox_Y = new JoystickButton(xboxController, 4);
+  private final JoystickButton manipulatorXbox_B = new JoystickButton(xboxController, 2); 
 
   private final JoystickButton manipulatorXbox_LB = new JoystickButton(xboxController, 5);
   private final JoystickButton manipulatorXbox_RB = new JoystickButton(xboxController, 6);   
@@ -41,8 +41,8 @@ public class RobotContainer {
   public RobotContainer() {
     driveSubsystem.setDefaultCommand(
       new TankDrive(
-        () -> -leftJoystick.getY(),
-        () -> -rightJoystick.getY(),
+        () -> leftJoystick.getY(),
+        () -> rightJoystick.getY(),
         driveSubsystem)
     );
     
@@ -52,14 +52,11 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-
     manipulatorXbox_LB.whileTrue(new Intake(intakeSubsystem));
-    manipulatorXbox_RB.onTrue(new Shooter(shooterSubsystem, intakeSubsystem));
+    manipulatorXbox_RB.whileTrue(new Shooter(shooterSubsystem));
 
 
-    manipulatorXbox_A.whileTrue(new Climb(true));
-    manipulatorXbox_Y.whileTrue(new Climb(false));
-
+    manipulatorXbox_A.whileTrue(new Climb(climbSubsystem, true));
   }
 
   public Command getAutonomousCommand() {

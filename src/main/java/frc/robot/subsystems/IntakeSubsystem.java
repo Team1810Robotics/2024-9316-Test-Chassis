@@ -36,7 +36,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     //TODO: Check to see which way the motors need to turn (applies for everything)
     public void intake() {
-        intakeMotors.set(Relay.Value.kForward);
+        intakeMotors.set(Relay.Value.kReverse);
         adjusterMotors.set(Relay.Value.kForward);
     }
 

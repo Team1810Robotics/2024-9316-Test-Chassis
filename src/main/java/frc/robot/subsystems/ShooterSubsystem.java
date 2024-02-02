@@ -5,20 +5,24 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants;
 
 public class ShooterSubsystem extends SubsystemBase{
-    private Talon shooterMotors;
+    private Talon leftShooterMotor;
+    private Talon rightShooterMotor;
 
 
     public ShooterSubsystem(){
-        shooterMotors = new Talon(ShooterConstants.SHOOTER_MOTORS);
+        leftShooterMotor = new Talon(ShooterConstants.LEFT_SHOOTER_MOTORS);
+        rightShooterMotor = new Talon(ShooterConstants.RIGHT_SHOOTER_MOTOR);
     }
 
     public void shoot() {
-        shooterMotors.set(1);
+        leftShooterMotor.set(1);
+        rightShooterMotor.set(-1);
     }
 
     
 
     public void stop(){
-        shooterMotors.stopMotor();
+        leftShooterMotor.stopMotor();
+        rightShooterMotor.stopMotor();
     }
 }   

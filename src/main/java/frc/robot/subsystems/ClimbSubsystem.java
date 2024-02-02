@@ -13,7 +13,7 @@ public class ClimbSubsystem extends SubsystemBase{
 
     }
 
-    public void Climb (boolean upDown) {
+    public void climb(boolean upDown) {
         if(upDown == true) {
             Motor.set(1);
         } else {
