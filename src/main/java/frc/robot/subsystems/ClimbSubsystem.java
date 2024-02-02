@@ -12,17 +12,18 @@ public class ClimbSubsystem extends SubsystemBase{
         climbMotor = new Talon(ClimbConstants.CLIMB_MOTOR);
     }
 
-    public void climb(boolean a_Input, boolean y_Input) {
-        if (a_Input) {
+
+    public void Climb(boolean aInput, boolean yInput) {
+        if (aInput) {
             climbMotor.set(-1);
-        } else if (y_Input) {
+        } else if (yInput) {
             climbMotor.set(1);
-        } else if ((a_Input == false) && (y_Input == false)) {
+        } else if ((aInput && yInput) == false) {
             climbMotor.stopMotor();
         }
     }
 
-    public void stop() {
+    public void stop(){
         climbMotor.stopMotor();
     }
     

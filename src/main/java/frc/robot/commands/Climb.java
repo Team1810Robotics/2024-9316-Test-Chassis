@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ClimbSubsystem;
 
 public class Climb extends Command {
-
     private boolean a_Input;
     private boolean y_Input;
+  
     private ClimbSubsystem climbSubsystem;
 
     public Climb(ClimbSubsystem climbSubsystem, boolean a_Input, boolean y_Input) {
@@ -16,9 +16,15 @@ public class Climb extends Command {
 
         addRequirements(climbSubsystem);
     }
-
-    public void execute () {
+  
+    @Override
+    public void execute() {
         climbSubsystem.climb(a_Input, y_Input);
+
+
+    @Override 
+    public void end(boolean interrupted) {
+        climbSubsystem.stop();
     }
     
 }
