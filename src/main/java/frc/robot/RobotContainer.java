@@ -27,8 +27,8 @@ public class RobotContainer {
 
   private XboxController xboxController = new XboxController(OperatorConstants.XBOX_CONTROLLER_PORT);
 
-  private final JoystickButton xboxButton_A = new JoystickButton(xboxController, 0);
-  private final JoystickButton xboxButton_Y = new JoystickButton(xboxController, 3);
+  private final JoystickButton manipulatorXbox_A = new JoystickButton(xboxController, 0);
+  private final JoystickButton manipulatorXbox_Y = new JoystickButton(xboxController, 3);
   private final JoystickButton manipulatorXbox_B = new JoystickButton(xboxController, 1); //TODO: Double check this
 
   public RobotContainer() {
@@ -39,12 +39,14 @@ public class RobotContainer {
         driveSubsystem)
     );
     intakeSubsystem.setDefaultCommand(new Intake(manipulatorXbox_B.getAsBoolean(), intakeSubsystem));
+
+    climbSubsystem.setDefaultCommand(new Climb(manipulatorXbox_A.getAsBoolean(), manipulatorXbox_Y.getAsBoolean(), climbSubsystem));
+    
     configureBindings();
   }
 
   private void configureBindings() {
-    xboxButton_A.whileTrue(new Climb(true));
-    xboxButton_Y.whileTrue(new Climb(false));
+
   }
 
   public Command getAutonomousCommand() {
