@@ -4,21 +4,23 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ClimbSubsystem;
 
 public class Climb extends Command {
-
+    private boolean a_Input;
+    private boolean y_Input;
+  
     private ClimbSubsystem climbSubsystem;
-    private boolean aInput;
-    private boolean yInput;
 
-    public Climb(boolean aInput, boolean yInput, ClimbSubsystem climbSubsystem) {
+    public Climb(ClimbSubsystem climbSubsystem, boolean a_Input, boolean y_Input) {
+        this.a_Input = a_Input;
+        this.y_Input = y_Input;
         this.climbSubsystem = climbSubsystem;
-        this.aInput = aInput;
-        this.yInput = yInput;
-    }
 
+        addRequirements(climbSubsystem);
+    }
+  
     @Override
     public void execute() {
-        climbSubsystem.Climb(aInput, yInput);
-    }
+        climbSubsystem.climb(a_Input, y_Input);
+
 
     @Override 
     public void end(boolean interrupted) {

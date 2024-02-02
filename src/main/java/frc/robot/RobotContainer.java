@@ -45,7 +45,11 @@ public class RobotContainer {
         driveSubsystem)
     );
     
+    //TODO: BIG PROBLEM. Need to find a way to run both Intake and Shooter at the same time
     intakeSubsystem.setDefaultCommand(new Intake(manipulatorXbox_B.getAsBoolean(), intakeSubsystem));
+    shooterSubsystem.setDefaultCommand(new Shooter(shooterSubsystem, intakeSubsystem, manipulatorXbox_LB.getAsBoolean(), manipulatorXbox_RB.getAsBoolean()));
+
+    climbSubsystem.setDefaultCommand(new Climb(climbSubsystem, manipulatorXbox_A.getAsBoolean(), manipulatorButton_Y.getAsBoolean()));
 
 
     climbSubsystem.setDefaultCommand(new Climb(manipulatorXbox_A.getAsBoolean(), manipulatorXbox_Y.getAsBoolean(), climbSubsystem));
@@ -54,8 +58,6 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-     manipulatorXbox_LB.onTrue(new Shooter(false, shooterSubsystem, intakeSubsystem));
-     manipulatorXbox_RB.onTrue(new Shooter(true, shooterSubsystem, intakeSubsystem));
   }
 
   public Command getAutonomousCommand() {
