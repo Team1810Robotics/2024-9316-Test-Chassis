@@ -7,18 +7,24 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class Intake extends Command {
 
     private IntakeSubsystem intakeSubsystem;
+    private boolean b_Input;
   
 
 
-    public Intake(IntakeSubsystem intakeSubsystem) {
+    public Intake(IntakeSubsystem intakeSubsystem, boolean b_Input) {
         this.intakeSubsystem = intakeSubsystem;
+        this.b_Input = b_Input;
 
         addRequirements(intakeSubsystem);
     }
 
     @Override
     public void execute() {
-        intakeSubsystem.intake();
+        if (b_Input) {
+            intakeSubsystem.reverseIntake();
+        } else {
+            intakeOperator();
+        }
     }
 
     /*This function will first check to see if there is a note in the intake, 
@@ -28,10 +34,10 @@ public class Intake extends Command {
         boolean noteCurrent = intakeSubsystem.getNoteDetector();
 
         if (noteCurrent == true) {
-          intakeSubsystem.pivotUp();
+        //   intakeSubsystem.pivotUp();
           intakeSubsystem.stopIntake();
         } else {
-          intakeSubsystem.pivotDown();
+        // intakeSubsystem.pivotDown();
           intakeSubsystem.intake();
         }
     }

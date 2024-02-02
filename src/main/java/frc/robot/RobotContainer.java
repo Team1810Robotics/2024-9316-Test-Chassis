@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.AnalogTrigger;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -12,7 +13,9 @@ import frc.robot.commands.Intake;
 import frc.robot.commands.Shooter;
 import frc.robot.commands.TankDrive;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -20,6 +23,8 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 public class RobotContainer {
+
+ 
   private DriveSubsystem driveSubsystem = new DriveSubsystem();
   private IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
@@ -35,7 +40,8 @@ public class RobotContainer {
   private final JoystickButton manipulatorXbox_B = new JoystickButton(xboxController, 2); 
 
   private final JoystickButton manipulatorXbox_LB = new JoystickButton(xboxController, 5);
-  private final JoystickButton manipulatorXbox_RB = new JoystickButton(xboxController, 6);   
+  private final JoystickButton manipulatorXbox_RB = new JoystickButton(xboxController, 6);
+  
 
 
   public RobotContainer() {
@@ -46,17 +52,14 @@ public class RobotContainer {
         driveSubsystem)
     );
     
-    // intakeSubsystem.setDefaultCommand(new Intake(manipulatorXbox_B.getAsBoolean(), intakeSubsystem));
+    intakeSubsystem.setDefaultCommand(new Intake(intakeSubsystem, manipulatorXbox_B.getAsBoolean()));    
+    shooterSubsystem.setDefaultCommand(new Shooter(shooterSubsystem, manipulatorXbox_LB.getAsBoolean(), manipulatorXbox_RB.getAsBoolean()));
 
     configureBindings();
   }
 
   private void configureBindings() {
-    manipulatorXbox_LB.whileTrue(new Intake(intakeSubsystem));
-    manipulatorXbox_RB.whileTrue(new Shooter(shooterSubsystem));
-
-
-    manipulatorXbox_A.whileTrue(new Climb(climbSubsystem, true));
+    // manipulatorXbox_A.whileTrue(new Climb(climbSubsystem, true));
   }
 
   public Command getAutonomousCommand() {
