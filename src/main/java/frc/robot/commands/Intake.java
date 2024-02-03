@@ -28,11 +28,11 @@ public class Intake extends Command {
     public void intakeOperator() {
         boolean noteCurrent = intakeSubsystem.getNoteDetector();
 
-        if (noteCurrent == true) {
+        if (noteCurrent == false) {
         //   intakeSubsystem.pivotUp();
-          intakeSubsystem.stopIntake();
+            intakeSubsystem.stopIntake();
         } else {
-        // intakeSubsystem.pivotDown();
+        //   intakeSubsystem.pivotDown();
           intakeSubsystem.intake();
         }
     }

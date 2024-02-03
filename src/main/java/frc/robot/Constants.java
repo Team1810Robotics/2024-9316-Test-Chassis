@@ -30,7 +30,7 @@ public class Constants {
         //TODO: Double check these values
         public static final int UPPER_LS = 5;
         public static final int LOWER_LS = 6;
-        public static final int NOTE_DETECTOR = 7;
+        public static final int NOTE_DETECTOR = 0;
 
 
 
