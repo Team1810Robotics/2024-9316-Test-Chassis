@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.Climb;
 import frc.robot.commands.Intake;
-import frc.robot.commands.Shooter;
+import frc.robot.commands.ShootAmp;
+import frc.robot.commands.ShootSpeaker;
 import frc.robot.commands.TankDrive;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -52,14 +53,15 @@ public class RobotContainer {
         driveSubsystem)
     );
     
-    intakeSubsystem.setDefaultCommand(new Intake(intakeSubsystem, manipulatorXbox_B.getAsBoolean()));    
-    shooterSubsystem.setDefaultCommand(new Shooter(shooterSubsystem, manipulatorXbox_LB.getAsBoolean(), manipulatorXbox_RB.getAsBoolean()));
 
     configureBindings();
   }
 
   private void configureBindings() {
-    // manipulatorXbox_A.whileTrue(new Climb(climbSubsystem, true));
+    manipulatorXbox_LB.whileTrue(new ShootAmp(shooterSubsystem));
+    manipulatorXbox_RB.whileTrue(new ShootSpeaker(shooterSubsystem));
+
+    manipulatorXbox_A.whileTrue(new Intake(intakeSubsystem));
   }
 
   public Command getAutonomousCommand() {

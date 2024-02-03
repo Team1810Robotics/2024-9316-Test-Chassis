@@ -15,20 +15,15 @@ public class ShooterSubsystem extends SubsystemBase{
         rightShooterMotor = new Talon(ShooterConstants.RIGHT_SHOOTER_MOTOR);
     }
 
-    public void shoot(boolean rb_Input, boolean lb_Input) {
-        if (rb_Input) {
-            leftShooterMotor.set(1);
-            rightShooterMotor.set(-1);
-        } else if (lb_Input) {
-            leftShooterMotor.set(.2);
-            rightShooterMotor.set(-.2);
-        } else if ((lb_Input == false) && (rb_Input == false)) {
-            leftShooterMotor.stopMotor();
-            rightShooterMotor.stopMotor();
-        }
-
+    public void setSpeakerSpeed() {
+        leftShooterMotor.set(1);
+        rightShooterMotor.set(-1);
     }
 
+    public void setAmpSpeed() {
+        leftShooterMotor.set(.75);
+        rightShooterMotor.set(-.75);
+    }
     
 
     public void stop(){
