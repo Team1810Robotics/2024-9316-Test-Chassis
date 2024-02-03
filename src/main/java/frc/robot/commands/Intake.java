@@ -20,7 +20,11 @@ public class Intake extends Command {
 
     @Override
     public void execute() {
-        intakeSubsystem.intake();
+        if (b_Input) {
+            intakeSubsystem.reverseIntake();
+        } else {
+            intakeOperator();
+        }
     }
 
     /*This function will first check to see if there is a note in the intake, 
