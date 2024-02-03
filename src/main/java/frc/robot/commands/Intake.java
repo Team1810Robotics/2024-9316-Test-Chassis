@@ -7,11 +7,13 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class Intake extends Command {
 
     private IntakeSubsystem intakeSubsystem;
+    private boolean b_Input;
   
 
 
-    public Intake(IntakeSubsystem intakeSubsystem) {
+    public Intake(IntakeSubsystem intakeSubsystem, boolean b_Input) {
         this.intakeSubsystem = intakeSubsystem;
+        this.b_Input  = b_Input;
 
         addRequirements(intakeSubsystem);
     }
@@ -27,11 +29,11 @@ public class Intake extends Command {
     public void intakeOperator() {
         boolean noteCurrent = intakeSubsystem.getNoteDetector();
 
-        if (noteCurrent == true) {
-          intakeSubsystem.pivotUp();
-          intakeSubsystem.stopIntake();
+        if (noteCurrent == false) {
+        //   intakeSubsystem.pivotUp();
+            intakeSubsystem.stopIntake();
         } else {
-          intakeSubsystem.pivotDown();
+        //   intakeSubsystem.pivotDown();
           intakeSubsystem.intake();
         }
     }
