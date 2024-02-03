@@ -41,7 +41,7 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public void reverseIntake() {
-        intakeMotors.set(Relay.Value.kReverse);
+        intakeMotors.set(Relay.Value.kForward);
     }
 
 

@@ -21,8 +21,8 @@ public class ShooterSubsystem extends SubsystemBase{
     }
 
     public void setAmpSpeed() {
-        leftShooterMotor.set(.75);
-        rightShooterMotor.set(-.75);
+        leftShooterMotor.set(.38);
+        rightShooterMotor.set(-.38);
     }
     
 
