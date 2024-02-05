@@ -46,6 +46,15 @@ public class RobotContainer {
     );
 
     
+    //TODO: BIG PROBLEM. Need to find a way to run both Intake and Shooter at the same time
+    intakeSubsystem.setDefaultCommand(new Intake(manipulatorXbox_B.getAsBoolean(), intakeSubsystem));
+    shooterSubsystem.setDefaultCommand(new Shooter(shooterSubsystem, intakeSubsystem, manipulatorXbox_LB.getAsBoolean(), manipulatorXbox_RB.getAsBoolean()));
+
+    climbSubsystem.setDefaultCommand(new Climb(climbSubsystem, manipulatorXbox_A.getAsBoolean(), manipulatorButton_Y.getAsBoolean()));
+
+
+
+    
     configureBindings();
   }
 
@@ -53,6 +62,7 @@ public class RobotContainer {
 
     manipulatorXbox_A.whileTrue(new Climb(climbSubsystem, false));
     manipulatorXbox_Y.whileTrue(new Climb(climbSubsystem, true));
+
 
   }
 

@@ -64,7 +64,12 @@ public class IntakeSubsystem extends SubsystemBase {
         } else {
             intakePivitor.set(Relay.Value.kForward);
         }
+    }
 
+    public void pivotDownShooter() {
+        while (getLowerLS() == false) {
+            intakePivitor.set(Relay.Value.kReverse);
+        }
     }
 
 

@@ -10,14 +10,15 @@ public class ClimbSubsystem extends SubsystemBase{
 
     public ClimbSubsystem() {
         climbMotor = new Talon(ClimbConstants.CLIMB_MOTOR);
-
     }
 
-    public void Climb(boolean upDown) {
+
+    public void climb(boolean upDown) {
         if (upDown) {
             climbMotor.set(.5);
         } else {
             climbMotor.set(-.5);
+
         }
     }
 
