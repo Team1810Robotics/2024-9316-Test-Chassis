@@ -6,18 +6,18 @@ import frc.robot.subsystems.ClimbSubsystem;
 public class Climb extends Command {
 
     private ClimbSubsystem climbSubsystem;
-    private boolean aInput;
-    private boolean yInput;
+    private boolean upDown;
 
-    public Climb(boolean aInput, boolean yInput, ClimbSubsystem climbSubsystem) {
+
+    public Climb(ClimbSubsystem climbSubsystem, boolean upDown) {
         this.climbSubsystem = climbSubsystem;
-        this.aInput = aInput;
-        this.yInput = yInput;
+        this.upDown = upDown;
+
     }
 
     @Override
     public void execute() {
-        climbSubsystem.Climb(aInput, yInput);
+        climbSubsystem.Climb(upDown);
     }
 
     @Override 

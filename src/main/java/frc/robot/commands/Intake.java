@@ -7,38 +7,36 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class Intake extends Command {
 
     private IntakeSubsystem intakeSubsystem;
+    private boolean isInverted;
+    private boolean ignoreNote;
+  
 
-    private boolean bButton;
 
-
-    public Intake(boolean bButton, IntakeSubsystem intakeSubsystem) {
+    public Intake(IntakeSubsystem intakeSubsystem, boolean isInverted, boolean ignoreNote) {
         this.intakeSubsystem = intakeSubsystem;
-        this.bButton = bButton;
+        this.isInverted = isInverted;
+        this.ignoreNote = ignoreNote;
+
 
         addRequirements(intakeSubsystem);
     }
 
     @Override
     public void execute() {
-        if (bButton == true) {
+        if (isInverted) {
             intakeSubsystem.reverseIntake();
         } else {
-            intakeOperator();
+            intakeSubsystem.intake();
         }
     }
 
-    /*This function will first check to see if there is a note in the intake, 
-    if there is, it will stop the intake and pivot up. 
-    If there isn't, it pivots down and begins intaking.*/
-    public void intakeOperator() {
+    @Override
+    public boolean isFinished() {
         boolean noteCurrent = intakeSubsystem.getNoteDetector();
-
-        if (noteCurrent == true) {
-          intakeSubsystem.pivotUp();
-          intakeSubsystem.stopIntake();
+        if (noteCurrent && ignoreNote) {
+            return true;
         } else {
-            intakeSubsystem.pivotDown();
-          intakeSubsystem.intake();
+            return false;
         }
     }
 

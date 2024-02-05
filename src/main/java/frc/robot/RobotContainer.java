@@ -38,14 +38,15 @@ public class RobotContainer {
         () -> -rightJoystick.getY(),
         driveSubsystem)
     );
-    intakeSubsystem.setDefaultCommand(new Intake(manipulatorXbox_B.getAsBoolean(), intakeSubsystem));
 
-    climbSubsystem.setDefaultCommand(new Climb(manipulatorXbox_A.getAsBoolean(), manipulatorXbox_Y.getAsBoolean(), climbSubsystem));
     
     configureBindings();
   }
 
   private void configureBindings() {
+
+    manipulatorXbox_A.whileTrue(new Climb(climbSubsystem, false));
+    manipulatorXbox_Y.whileTrue(new Climb(climbSubsystem, true));
 
   }
 

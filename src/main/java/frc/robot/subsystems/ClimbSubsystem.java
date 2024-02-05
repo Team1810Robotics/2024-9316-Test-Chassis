@@ -13,13 +13,11 @@ public class ClimbSubsystem extends SubsystemBase{
 
     }
 
-    public void Climb(boolean aInput, boolean yInput) {
-        if (aInput) {
-            climbMotor.set(-1);
-        } else if (yInput) {
-            climbMotor.set(1);
-        } else if ((aInput && yInput) == false) {
-            climbMotor.stopMotor();
+    public void Climb(boolean upDown) {
+        if (upDown) {
+            climbMotor.set(.5);
+        } else {
+            climbMotor.set(-.5);
         }
     }
 
