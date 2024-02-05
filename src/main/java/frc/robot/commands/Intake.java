@@ -10,6 +10,7 @@ public class Intake extends Command {
     private boolean isInverted;
     private boolean ignoreNote;
   
+  
 
 
     public Intake(IntakeSubsystem intakeSubsystem, boolean isInverted, boolean ignoreNote) {
