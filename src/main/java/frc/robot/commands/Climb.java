@@ -19,7 +19,12 @@ public class Climb extends Command {
 
     @Override
     public void execute() {
-        climbSubsystem.Climb(upDown);
+        climbSubsystem.climb(upDown);
+    }
+
+    @Override 
+    public void end(boolean interrupted) {
+        climbSubsystem.stop();
     }
     
 }
