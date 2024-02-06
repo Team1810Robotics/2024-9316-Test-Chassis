@@ -19,7 +19,7 @@ public class Climb extends Command {
 
     @Override
     public void execute() {
-        climbSubsystem.Climb(upDown);
+        climbSubsystem.climb(upDown);
     }
     
 }

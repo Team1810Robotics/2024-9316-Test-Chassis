@@ -7,12 +7,18 @@ package frc.robot;
 import edu.wpi.first.wpilibj.AnalogTrigger;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.Climb;
 import frc.robot.commands.Intake;
 import frc.robot.commands.ShootSpeaker;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.auto.Offline;
+import frc.robot.commands.auto.ScoreOffline;
+import frc.robot.commands.auto.ScoreOfflineScore;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -41,6 +47,8 @@ public class RobotContainer {
 
   private final JoystickButton manipulatorXbox_LB = new JoystickButton(xboxController, 5);
   private final JoystickButton manipulatorXbox_RB = new JoystickButton(xboxController, 6);
+
+  private SendableChooser<Command> autoChooser = new SendableChooser<>();
   
 
 
@@ -51,7 +59,13 @@ public class RobotContainer {
         () -> rightJoystick.getY(),
         driveSubsystem)
     );
+
+    autoChooser.setDefaultOption("No Auto", new InstantCommand());
+    autoChooser.addOption("offline", new Offline(driveSubsystem));
+    autoChooser.addOption("scoreOffline", new ScoreOffline(driveSubsystem, intakeSubsystem, shooterSubsystem));
+    autoChooser.addOption("scoreOfflineScore", new ScoreOfflineScore(shooterSubsystem, intakeSubsystem, driveSubsystem));
     
+    Shuffleboard.getTab("Auto").add("Auto Chooser", autoChooser);
 
     configureBindings();
   }
@@ -64,6 +78,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return autoChooser.getSelected();
   }
 }

@@ -11,7 +11,7 @@ public class ShooterSubsystem extends SubsystemBase{
 
     public ShooterSubsystem(){
         leftShooterMotor = new Talon(ShooterConstants.LEFT_SHOOTER_MOTORS);
-        rightShooterMotor = new Talon(ShooterConstants.RIGHT_SHOOTER_MOTORS);
+        rightShooterMotor = new Talon(ShooterConstants.RIGHT_SHOOTER_MOTOR);
 
     
     }
