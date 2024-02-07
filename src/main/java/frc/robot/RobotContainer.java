@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.Climb;
 import frc.robot.commands.Intake;
+import frc.robot.commands.Shoot;
 import frc.robot.commands.ShootSpeaker;
 import frc.robot.commands.TankDrive;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -36,8 +37,9 @@ public class RobotContainer {
   private XboxController xboxController = new XboxController(OperatorConstants.XBOX_CONTROLLER_PORT);
 
   private final JoystickButton manipulatorXbox_A = new JoystickButton(xboxController, 1);
-  private final JoystickButton manipulatorXbox_Y = new JoystickButton(xboxController, 4);
   private final JoystickButton manipulatorXbox_B = new JoystickButton(xboxController, 2); 
+  private final JoystickButton manipulatorXbox_X = new JoystickButton(xboxController, 3);
+  private final JoystickButton manipulatorXbox_Y = new JoystickButton(xboxController, 4);
 
   private final JoystickButton manipulatorXbox_LB = new JoystickButton(xboxController, 5);
   private final JoystickButton manipulatorXbox_RB = new JoystickButton(xboxController, 6);
@@ -57,10 +59,11 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    manipulatorXbox_RB.whileTrue(new ShootSpeaker(shooterSubsystem));
+    manipulatorXbox_RB.onTrue(new Shoot(shooterSubsystem, intakeSubsystem));
+    // manipulatorXbox_RB.whileFalse(new ShootSpeaker(shooterSubsystem));
 
-    manipulatorXbox_A.onTrue(new Intake(intakeSubsystem, false, false));
-    manipulatorXbox_B.whileTrue(new Intake(intakeSubsystem, true, true));
+    manipulatorXbox_B.onTrue(new Intake(intakeSubsystem, false, false));
+    manipulatorXbox_X.whileTrue(new Intake(intakeSubsystem, true, true));
   }
 
   public Command getAutonomousCommand() {
