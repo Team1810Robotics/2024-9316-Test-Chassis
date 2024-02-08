@@ -14,12 +14,13 @@ public class ScoreOffline extends SequentialCommandGroup {
     public ScoreOffline(DriveSubsystem driveSubsystem, IntakeSubsystem intakeSubsystem, ShooterSubsystem shooterSubsystem) {
 
         addCommands(
+            new Intake(intakeSubsystem, false, true).withTimeout(1),
+
             //shoot into speaker
             new ShootSpeaker(shooterSubsystem).withTimeout(2),
 
             new WaitCommand(1),
             //kicks note into shooter
-            new Intake(intakeSubsystem, false, true).withTimeout(1),
 
             //drive back
             new Drive(driveSubsystem, -.5, -.5, false).withTimeout(2)

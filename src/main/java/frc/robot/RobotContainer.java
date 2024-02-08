@@ -31,7 +31,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 public class RobotContainer {
 
  
-  private DriveSubsystem driveSubsystem = new DriveSubsystem();
+  public DriveSubsystem driveSubsystem = new DriveSubsystem();
   private IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private ClimbSubsystem climbSubsystem = new ClimbSubsystem();
@@ -55,8 +55,8 @@ public class RobotContainer {
   public RobotContainer() {
     driveSubsystem.setDefaultCommand(
       new TankDrive(
-        () -> leftJoystick.getY(),
-        () -> rightJoystick.getY(),
+        () -> -leftJoystick.getY(),
+        () -> -rightJoystick.getY(),
         driveSubsystem)
     );
 
@@ -78,6 +78,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return Commands.print("No Auto Selected");
+    return autoChooser.getSelected();
   }
 }
