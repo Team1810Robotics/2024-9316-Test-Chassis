@@ -78,6 +78,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return autoChooser.getSelected();
+    return Commands.print("No Auto Selected");
   }
 }

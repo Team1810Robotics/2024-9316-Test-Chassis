@@ -5,8 +5,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.DriveSubsystem;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
@@ -42,7 +44,27 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+             DriveSubsystem dss = new DriveSubsystem();
+    double time = Timer.getFPGATimestamp();
+    if (time > 3){
+      // Cross Line
+    dss.drive(0.6, 0.6);
+    } else {
+       if (time > 12){
+            if (time > 15){
+                dss.drive(0.4, 0.6);
+                     // Moving, and turning right
+            } else {
+                dss.stop();
+                    // Auto Complete
+            }
+    } else {
+      // Cross Line Complete, Awaiting Next Move
+      dss.stop();
+    }
+    }  
+  }
 
   @Override
   public void autonomousExit() {}
