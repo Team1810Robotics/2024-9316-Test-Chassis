@@ -35,5 +35,14 @@ public class Constants {
 
 
         }
+
+        public static final class VisionConstants {
+            public static final double CAMERA_HEIGHT = 0;
+            public static final double CAMERA_PITCH = 0;
+            public static final double APRILTAG_ANGLE = 0;
+
+            public static final int APRILTAG_RED_SHOOTER_ID = 4;
+            public static final double APRILTAG_RED_SHOOTER_HEIGHT = 1.32;
+        }
     
 }
