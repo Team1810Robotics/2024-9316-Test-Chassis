@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -43,26 +44,25 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-    // DriveSubsystem dss = new DriveSubsystem();
-    // double time = Timer.getFPGATimestamp();
-    // if (time > 3){
-    //   // Cross Line
-    // m_robotContainer.driveSubsystem.drive(1, 1);
-    // } else {
-    //    if (time > 12){
-    //         if (time > 15){
-    //             m_robotContainer.driveSubsystem.drive(0.4, 0.6);
-    //           
+     double time = Timer.getFPGATimestamp();
+     if (time < 3){
+       // Cross Line
+     m_robotContainer.driveSubsystem.drive(1, 1);
+     } else {
+        if (time > 12){
+             if (time < 15){
+                 m_robotContainer.driveSubsystem.drive(0.4, 0.6);
+               
            // Moving, and turning right
-    //         } else {
-    //             m_robotContainer.driveSubsystem.stop();
-    //                 // Auto Complete
-    //         }
-    // } else {
-    //   // Cross Line Complete, Awaiting Next Move
-    //   m_robotContainer.driveSubsystem.stop();
-    // }
-    // }  
+             } else {
+                 m_robotContainer.driveSubsystem.stop();
+          // Auto Complete
+             }
+          } else {
+            // Cross Line Complete, Awaiting Next Move
+            m_robotContainer.driveSubsystem.stop();
+          }
+     }  
   }
 
   @Override
