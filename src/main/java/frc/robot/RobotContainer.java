@@ -39,14 +39,7 @@ public class RobotContainer {
   private Joystick leftJoystick = new Joystick(OperatorConstants.LEFT_JOYSTICK_PORT);
   private Joystick rightJoystick = new Joystick(OperatorConstants.RIGHT_JOYSTICK_PORT);
 
-  private XboxController xboxController = new XboxController(OperatorConstants.XBOX_CONTROLLER_PORT);
-
-  private final JoystickButton manipulatorXbox_A = new JoystickButton(xboxController, 1);
-  private final JoystickButton manipulatorXbox_Y = new JoystickButton(xboxController, 4);
-  private final JoystickButton manipulatorXbox_B = new JoystickButton(xboxController, 2); 
-
-  private final JoystickButton manipulatorXbox_LB = new JoystickButton(xboxController, 5);
-  private final JoystickButton manipulatorXbox_RB = new JoystickButton(xboxController, 6);
+  private CommandXboxController xboxController = new CommandXboxController(OperatorConstants.XBOX_CONTROLLER_PORT);
 
   private SendableChooser<Command> autoChooser = new SendableChooser<>();
   
@@ -71,10 +64,10 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    manipulatorXbox_RB.whileTrue(new ShootSpeaker(shooterSubsystem));
+    xboxController.rightBumper().whileTrue(new ShootSpeaker(shooterSubsystem));
 
-    manipulatorXbox_A.onTrue(new Intake(intakeSubsystem, false, false));
-    manipulatorXbox_B.whileTrue(new Intake(intakeSubsystem, true, true));
+    xboxController.x().onTrue(new Intake(intakeSubsystem, false, false));
+    xboxController.b().whileTrue(new Intake(intakeSubsystem, true, true));
   }
 
   public Command getAutonomousCommand() {

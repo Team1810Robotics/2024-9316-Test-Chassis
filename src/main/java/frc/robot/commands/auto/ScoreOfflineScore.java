@@ -38,6 +38,8 @@ public class ScoreOfflineScore extends SequentialCommandGroup {
 
             new Intake(intakeSubsystem, false, true)
         );
+
+        
     }
     
 }
