@@ -1,6 +1,7 @@
 package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.utility.Drive;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class Offline extends SequentialCommandGroup {
