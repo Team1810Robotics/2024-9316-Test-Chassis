@@ -6,19 +6,24 @@ import frc.robot.Constants.ClimbConstants;
 
 public class ClimbSubsystem extends SubsystemBase{
 
-  Talon Motor;
+    private Talon climbMotor;
 
     public ClimbSubsystem() {
-        Motor = new Talon(ClimbConstants.CLIMB_MOTOR);
-
+        climbMotor = new Talon(ClimbConstants.CLIMB_MOTOR);
     }
 
+
     public void climb(boolean upDown) {
-        if(upDown == true) {
-            Motor.set(1);
+        if (upDown) {
+            climbMotor.set(.5);
         } else {
-            Motor.set(-1);
+            climbMotor.set(-.5);
+
         }
+    }
+
+    public void stop(){
+        climbMotor.stopMotor();
     }
     
 }

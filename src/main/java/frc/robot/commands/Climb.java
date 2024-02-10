@@ -4,18 +4,21 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ClimbSubsystem;
 
 public class Climb extends Command {
-
-    private boolean upDown;
+  
     private ClimbSubsystem climbSubsystem;
 
+    private boolean upDown;
+
+
     public Climb(ClimbSubsystem climbSubsystem, boolean upDown) {
-        this.upDown = upDown;
         this.climbSubsystem = climbSubsystem;
+        this.upDown = upDown;
 
         addRequirements(climbSubsystem);
     }
 
-    public void execute () {
+    @Override
+    public void execute() {
         climbSubsystem.climb(upDown);
     }
     

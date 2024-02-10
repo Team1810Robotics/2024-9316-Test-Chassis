@@ -10,6 +10,7 @@ public class Intake extends Command {
     private boolean isInverted;
     private boolean ignoreNote;
   
+  
 
 
     public Intake(IntakeSubsystem intakeSubsystem, boolean isInverted, boolean ignoreNote) {
@@ -33,7 +34,7 @@ public class Intake extends Command {
     @Override
     public boolean isFinished() {
         boolean noteCurrent = intakeSubsystem.getNoteDetector();
-        if (noteCurrent && !ignoreNote) {
+        if (!noteCurrent && !ignoreNote) {
             return true;
         } else {
             return false;
