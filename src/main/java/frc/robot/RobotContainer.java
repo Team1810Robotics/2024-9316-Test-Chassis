@@ -5,10 +5,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.Intake;
+import frc.robot.commands.Shoot;
 import frc.robot.commands.ShootSpeaker;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.auto.Offline;
@@ -36,6 +40,7 @@ public class RobotContainer {
   private CommandXboxController xboxController = new CommandXboxController(OperatorConstants.XBOX_CONTROLLER_PORT);
 
   private SendableChooser<Command> autoChooser = new SendableChooser<>();
+
   
 
 
@@ -47,21 +52,32 @@ public class RobotContainer {
         driveSubsystem)
     );
 
+
+    configureBindings();
+
+    setShuffleboard();
+  }
+
+  private void configureBindings() {
+    xboxController.rightBumper().onTrue(new Shoot(shooterSubsystem, intakeSubsystem));
+    // manipulatorXbox_RB.whileFalse(new ShootSpeaker(shooterSubsystem));
+
+    xboxController.b().onTrue(new Intake(intakeSubsystem, false, false));
+    xboxController.x().whileTrue(new Intake(intakeSubsystem, true, true));
+
+    xboxController.a().whileTrue(new Climb(climbSubsystem, false));
+    xboxController.y().whileTrue(new Climb(climbSubsystem, true));
+  }
+
+  public void setShuffleboard() {
+    Shuffleboard.getTab("Gen").addBoolean("Note Detector", () -> intakeSubsystem.getNoteDetector());
+    
     autoChooser.setDefaultOption("No Auto", new InstantCommand());
     autoChooser.addOption("offline", new Offline(driveSubsystem));
     autoChooser.addOption("scoreOffline", new ScoreOffline(driveSubsystem, intakeSubsystem, shooterSubsystem));
     autoChooser.addOption("scoreOfflineScore", new ScoreOfflineScore(shooterSubsystem, intakeSubsystem, driveSubsystem));
     
     Shuffleboard.getTab("Auto").add("Auto Chooser", autoChooser);
-
-    configureBindings();
-  }
-
-  private void configureBindings() {
-    xboxController.rightBumper().whileTrue(new ShootSpeaker(shooterSubsystem));
-
-    xboxController.x().onTrue(new Intake(intakeSubsystem, false, false));
-    xboxController.b().whileTrue(new Intake(intakeSubsystem, true, true));
   }
 
   public Command getAutonomousCommand() {
