@@ -12,10 +12,8 @@ public class ScoreOffline extends ParallelCommandGroup {
    
     public ScoreOffline(DriveSubsystem driveSubsystem, IntakeSubsystem intakeSubsystem, ShooterSubsystem shooterSubsystem) {
         addCommands(
-            new ShootSpeaker(shooterSubsystem),
-            new ShootDrive(intakeSubsystem, driveSubsystem)
-
-            
+                new ShootSpeaker(shooterSubsystem),
+                new ShootDrive(intakeSubsystem, driveSubsystem)
         );
     } 
 }

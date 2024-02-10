@@ -8,12 +8,10 @@ import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.Climb;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Shoot;
-import frc.robot.commands.ShootSpeaker;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.auto.Offline;
 import frc.robot.commands.auto.ScoreOffline;
@@ -60,13 +58,13 @@ public class RobotContainer {
 
   private void configureBindings() {
     xboxController.rightBumper().onTrue(new Shoot(shooterSubsystem, intakeSubsystem));
-    // manipulatorXbox_RB.whileFalse(new ShootSpeaker(shooterSubsystem));
 
     xboxController.b().onTrue(new Intake(intakeSubsystem, false, false));
     xboxController.x().whileTrue(new Intake(intakeSubsystem, true, true));
 
     xboxController.a().whileTrue(new Climb(climbSubsystem, false));
     xboxController.y().whileTrue(new Climb(climbSubsystem, true));
+
   }
 
   public void setShuffleboard() {
