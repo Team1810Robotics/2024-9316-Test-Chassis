@@ -11,11 +11,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.Climb;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.ShootSpeaker;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.auto.Offline;
+import frc.robot.commands.auto.Score;
 import frc.robot.commands.auto.ScoreOffline;
 import frc.robot.commands.auto.ScoreOfflineScore;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -76,6 +78,7 @@ public class RobotContainer {
     autoChooser.addOption("offline", new Offline(driveSubsystem));
     autoChooser.addOption("scoreOffline", new ScoreOffline(driveSubsystem, intakeSubsystem, shooterSubsystem));
     autoChooser.addOption("scoreOfflineScore", new ScoreOfflineScore(shooterSubsystem, intakeSubsystem, driveSubsystem));
+    autoChooser.addOption("score", new Score(shooterSubsystem, intakeSubsystem));
     
     Shuffleboard.getTab("Auto").add("Auto Chooser", autoChooser);
   }
