@@ -16,6 +16,7 @@ import frc.robot.commands.Intake;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.ShootSpeaker;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.auto.LukesAuto;
 import frc.robot.commands.auto.Offline;
 import frc.robot.commands.auto.Score;
 import frc.robot.commands.auto.ScoreOffline;
@@ -79,6 +80,7 @@ public class RobotContainer {
     autoChooser.addOption("scoreOffline", new ScoreOffline(driveSubsystem, intakeSubsystem, shooterSubsystem));
     autoChooser.addOption("scoreOfflineScore", new ScoreOfflineScore(shooterSubsystem, intakeSubsystem, driveSubsystem));
     autoChooser.addOption("score", new Score(shooterSubsystem, intakeSubsystem));
+    autoChooser.addOption("LukesAuto", new LukesAuto(driveSubsystem));
     
     Shuffleboard.getTab("Auto").add("Auto Chooser", autoChooser);
   }
