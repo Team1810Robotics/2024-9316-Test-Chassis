@@ -6,15 +6,15 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
+import com.ctre.phoenix.sensors.Pigeon2;
 
 public class DriveSubsystem extends SubsystemBase {
     
     private Talon leftMotors;
     private Talon rightMotors;
-
+    
     private IntakeSubsystem intakeSubsystem;
-
-
+    public Pigeon2 pg;
 
 
     public DriveSubsystem() {
@@ -25,8 +25,12 @@ public class DriveSubsystem extends SubsystemBase {
         leftMotors.setInverted(DriveConstants.LEFT_INVERTED);
         rightMotors.setInverted(DriveConstants.RIGHT_INVERTED);
 
+        pg = new Pigeon2(DriveConstants.GYRO);
+        pg.configFactoryDefault();
+    }
 
-
+    public void zeroGyro(){
+    pg.setYaw(0);
     }
 
     public void drive(double leftSpeed, double rightSpeed) {

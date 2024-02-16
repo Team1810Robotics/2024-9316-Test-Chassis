@@ -17,6 +17,7 @@ public class Constants {
         public static final boolean RIGHT_INVERTED = false;
 
         public static final double DEADBAND = .05;
+        public static final int GYRO = 15;
     }
 
     public class IntakeConstants {
