@@ -43,5 +43,13 @@ public class Constants {
         public static final int LEFT_SHOOTER_MOTORS = 3;
         public static final int RIGHT_SHOOTER_MOTOR = 2;
     }
+    public class GearBoxConstants{
+        public static final int SERVO_R = 1;
+        public static final int SERVO_L = 2;
+        public static final int ENCODER_R = 4;
+        public static final int ENCODER_R = 5;
+        public static final int ENCODER_L = 6;
+        public static final int ENCODER_L = 7;
+    }
 
 }
