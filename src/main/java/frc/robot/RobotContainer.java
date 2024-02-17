@@ -27,7 +27,9 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import com.pathplanner.lib.auto.AutoBuilder;
 import frc.robot.subsystems.ShooterSubsystem;
+import com.pathplanner.lib.path.*;
 
 public class RobotContainer {
 
@@ -59,6 +61,9 @@ public class RobotContainer {
     configureBindings();
 
     setShuffleboard();
+
+
+    //NamedCommand.registerCommand("testPathPlannerAuto", new testPathPlanner());
   }
 
   private void configureBindings() {
@@ -86,6 +91,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return autoChooser.getSelected();
+    PathPlannerPath path = PathPlannerPath.fromPathFile("nav2");
+    return AutoBuilder.followPath(path);
   }
 }

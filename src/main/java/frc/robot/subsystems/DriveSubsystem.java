@@ -40,8 +40,12 @@ public class DriveSubsystem extends SubsystemBase {
 
 
     public ChassisSpeeds getRobotRelativeSpeeds(){
-      ChassisSpeeds nul = new ChassisSpeeds();
-    return nul;
+      //TD_KINEMATICS
+
+      // NEED WHEEL DIAMETER
+      
+      ChassisSpeeds spd = new ChassisSpeeds(.5,0,0);
+    return spd;
     }
 
     public void driveRobotRelative(){
