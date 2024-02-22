@@ -28,6 +28,7 @@ public class Intake extends Command {
             intakeSubsystem.reverseIntake();
         } else {
             intakeSubsystem.intake();
+            System.out.println("test");
         }
     }
 

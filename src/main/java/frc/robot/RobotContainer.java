@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.Climb;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.ShootSpeaker;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.auto.Offline;
 import frc.robot.commands.auto.ScoreOffline;
@@ -57,7 +58,7 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    xboxController.rightBumper().onTrue(new Shoot(shooterSubsystem, intakeSubsystem));
+    xboxController.rightBumper().onTrue(new Shoot(shooterSubsystem, intakeSubsystem).withTimeout(2));
 
     xboxController.b().onTrue(new Intake(intakeSubsystem, false, false));
     xboxController.x().whileTrue(new Intake(intakeSubsystem, true, true));
