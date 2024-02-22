@@ -11,6 +11,8 @@ public class Constants {
         public static final int XBOX_CONTROLLER_PORT = 2;    
     }
     public static final double trackWidth = 0.4651375;
+        public static final double wheelDiameter_INCHES = 8;
+
     public static final DifferentialDriveKinematics TD_KINEMATICS = new DifferentialDriveKinematics(trackWidth);
 
     public class DriveConstants {
