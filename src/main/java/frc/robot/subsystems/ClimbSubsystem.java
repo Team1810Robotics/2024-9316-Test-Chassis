@@ -2,22 +2,28 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.ClimbConstants;
 
 public class ClimbSubsystem extends SubsystemBase{
 
-  Talon Motor;
+    private Talon climbMotor;
 
     public ClimbSubsystem() {
-        Motor = new Talon(0);
-
+        climbMotor = new Talon(ClimbConstants.CLIMB_MOTOR);
     }
 
-    public void Climb (boolean upDown) {
-        if(upDown == true) {
-            Motor.set(1);
+
+    public void climb(boolean upDown) {
+        if (upDown) {
+            climbMotor.set(.5);
         } else {
-            Motor.set(-1);
+            climbMotor.set(-.5);
+
         }
+    }
+
+    public void stop(){
+        climbMotor.stopMotor();
     }
     
 }
