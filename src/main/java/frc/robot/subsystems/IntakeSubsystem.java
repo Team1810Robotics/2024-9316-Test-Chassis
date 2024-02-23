@@ -85,28 +85,6 @@ public class IntakeSubsystem extends SubsystemBase {
         adjusterMotors.stopMotor();
     }
 
-    public void pivotUp() {
-        if (getUpperLS()) {
-            intakePivitor.set(Relay.Value.kOff);
-        } else {
-            intakePivitor.set(Relay.Value.kForward);
-        }
-    }
-
-    public void pivotDown() {
-        if (getLowerLS()) {
-            intakePivitor.set(Relay.Value.kOff);
-        } else {
-            intakePivitor.set(Relay.Value.kForward);
-        }
-    }
-
-    public void pivotDownShooter() {
-        while (getLowerLS() == false) {
-            intakePivitor.set(Relay.Value.kReverse);
-        }
-    }
-
 
     public boolean getNoteDetector() {
         return noteDetector.get();
