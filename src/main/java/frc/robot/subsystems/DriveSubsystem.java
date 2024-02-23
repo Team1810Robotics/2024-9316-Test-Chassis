@@ -120,6 +120,14 @@ public class DriveSubsystem extends SubsystemBase {
     }
     
     private void drive(ChassisSpeeds chassisspeeds1) {
+
+
+
+        double  DirectionSpeed = MathUtil.applyDeadband(chassisspeeds1.vxMetersPerSecond, .02);
+        double  TurnSpeed = MathUtil.applyDeadband(chassisspeeds1.omegaRadiansPerSecond, .02);
+
+        DifferentialDrive.arcadeDriveIK(DirectionSpeed, TurnSpeed, true);
+
     }
 
   
