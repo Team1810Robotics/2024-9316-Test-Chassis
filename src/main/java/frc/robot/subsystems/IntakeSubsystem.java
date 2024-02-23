@@ -1,8 +1,8 @@
 package frc.robot.subsystems;
 
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
 
@@ -10,10 +10,10 @@ public class IntakeSubsystem extends SubsystemBase {
 
     private Relay intakeMotors;
 
+
     private Relay adjusterMotors;
 
-
-    private Talon intakePivitor;
+    private Relay intakePivitor;
 
     private DigitalInput upperLS;
     private DigitalInput lowerLS;
@@ -21,11 +21,11 @@ public class IntakeSubsystem extends SubsystemBase {
 
 
     public IntakeSubsystem() {
-        intakeMotors = new Relay(IntakeConstants.LEFT_INTAKE);
+        intakeMotors = new Relay(IntakeConstants.INTAKE_MOTORS);
 
-        adjusterMotors = new Relay(IntakeConstants.LEFT_ADJUSTER);
+        adjusterMotors = new Relay(IntakeConstants.ADJUSTER_MOTORS);
 
-        intakePivitor = new Talon(IntakeConstants.INTAKE_PIVITOR);
+        intakePivitor = new Relay(IntakeConstants.INTAKE_PIVITOR);
 
         upperLS = new DigitalInput(IntakeConstants.UPPER_LS);
         lowerLS = new DigitalInput(IntakeConstants.LOWER_LS);
@@ -34,15 +34,16 @@ public class IntakeSubsystem extends SubsystemBase {
 
     }
 
+    //TODO: Check to see which way the motors need to turn (applies for everything)
     public void intake() {
-        intakeMotors.set(Relay.Value.kForward);
+        intakeMotors.set(Relay.Value.kReverse);
         adjusterMotors.set(Relay.Value.kForward);
-
     }
 
-    public boolean getNoteDetector() {
-            return noteDetector.get();
+    public void reverseIntake() {
+        intakeMotors.set(Relay.Value.kForward);
     }
+
 
     public Relay.Value getIntakeMotors() {
         return intakeMotors.get();
@@ -53,21 +54,9 @@ public class IntakeSubsystem extends SubsystemBase {
         adjusterMotors.stopMotor();
     }
 
-    public void pivotUp() {
-        if (getUpperLS()) {
-            intakePivitor.set(0);
-        } else {
-            intakePivitor.set(0.1);
-        }
-    }
 
-    public void pivotDown() {
-        if (getLowerLS()) {
-            intakePivitor.set(0);
-        } else {
-            intakePivitor.set(0.1);
-        }
-
+    public boolean getNoteDetector() {
+        return noteDetector.get();
     }
 
     public boolean getLowerLS() {
@@ -81,7 +70,8 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void stop(){
         intakeMotors.stopMotor();
-        intakeMotors.stopMotor();
+
+        adjusterMotors.stopMotor();
 
         intakePivitor.stopMotor();
     }
