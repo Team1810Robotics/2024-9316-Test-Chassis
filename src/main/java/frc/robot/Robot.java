@@ -16,15 +16,14 @@ import frc.robot.subsystems.VisionSubsystem;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  private RobotContainer m_robotContainer;
+  private RobotContainer robotContainer;
 
-  private VisionSubsystem visionSubsystem = new VisionSubsystem();
 
   private final Field2d m_field = new Field2d();
 
   @Override
   public void robotInit() {
-    m_robotContainer = new RobotContainer();
+    robotContainer = new RobotContainer();
     CameraServer.startAutomaticCapture();
     SmartDashboard.putData("Field", m_field);
   }
@@ -32,7 +31,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
-    m_field.setRobotPose(visionSubsystem.getRobotPose().toPose2d());
+    m_field.setRobotPose(robotContainer.visionSubsystem.getRobotPose().toPose2d());
   }
 
   @Override
@@ -46,7 +45,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    m_autonomousCommand = robotContainer.getAutonomousCommand();
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
@@ -55,25 +54,25 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-     double time = Timer.getFPGATimestamp();
-     if (time < 3){
-       // Cross Line
-     m_robotContainer.driveSubsystem.drive(1, 1);
-     } else {
-        if (time > 12){
-             if (time < 15){
-                 m_robotContainer.driveSubsystem.drive(0.4, 0.6);
+    //  double time = Timer.getFPGATimestamp();
+    //  if (time < 3){
+    //    // Cross Line
+    //  m_robotContainer.driveSubsystem.drive(1, 1);
+    //  } else {
+    //     if (time > 12){
+    //          if (time < 15){
+    //              m_robotContainer.driveSubsystem.drive(0.4, 0.6);
                
-           // Moving, and turning right
-             } else {
-                 m_robotContainer.driveSubsystem.stop();
-          // Auto Complete
-             }
-          } else {
-            // Cross Line Complete, Awaiting Next Move
-            m_robotContainer.driveSubsystem.stop();
-          }
-     }  
+    //        // Moving, and turning right
+    //          } else {
+    //              m_robotContainer.driveSubsystem.stop();
+    //       // Auto Complete
+    //          }
+    //       } else {
+    //         // Cross Line Complete, Awaiting Next Move
+    //         m_robotContainer.driveSubsystem.stop();
+    //       }
+    //  }  
   }
 
   @Override

@@ -24,6 +24,7 @@ import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.VisionSubsystem;
 
 public class RobotContainer {
 
@@ -32,6 +33,8 @@ public class RobotContainer {
   private IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private ClimbSubsystem climbSubsystem = new ClimbSubsystem();
+  public VisionSubsystem visionSubsystem = new VisionSubsystem();
+
 
   private Joystick leftJoystick = new Joystick(OperatorConstants.LEFT_JOYSTICK_PORT);
   private Joystick rightJoystick = new Joystick(OperatorConstants.RIGHT_JOYSTICK_PORT);
