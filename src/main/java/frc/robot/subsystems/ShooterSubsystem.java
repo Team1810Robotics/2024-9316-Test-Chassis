@@ -12,8 +12,6 @@ public class ShooterSubsystem extends SubsystemBase{
     public ShooterSubsystem(){
         leftShooterMotor = new Talon(ShooterConstants.LEFT_SHOOTER_MOTOR);
         rightShooterMotor = new Talon(ShooterConstants.RIGHT_SHOOTER_MOTOR);
-
-    
     }
 
     public void setSpeakerSpeed() {

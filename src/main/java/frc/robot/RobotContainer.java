@@ -41,10 +41,8 @@ public class RobotContainer {
 
   private CommandXboxController xboxController = new CommandXboxController(OperatorConstants.XBOX_CONTROLLER_PORT);
 
+
   private SendableChooser<Command> autoChooser = new SendableChooser<>();
-
-  
-
 
   public RobotContainer() {
     driveSubsystem.setDefaultCommand(
@@ -65,7 +63,6 @@ public class RobotContainer {
 
     xboxController.b().onTrue(new Intake(intakeSubsystem, false, false));
     xboxController.x().whileTrue(new Intake(intakeSubsystem, true, true));
-
     xboxController.a().whileTrue(new Climb(climbSubsystem, false));
     xboxController.y().whileTrue(new Climb(climbSubsystem, true));
 
@@ -78,7 +75,7 @@ public class RobotContainer {
     autoChooser.addOption("offline", new Offline(driveSubsystem));
     autoChooser.addOption("scoreOffline", new ScoreOffline(driveSubsystem, intakeSubsystem, shooterSubsystem));
     autoChooser.addOption("scoreOfflineScore", new ScoreOfflineScore(shooterSubsystem, intakeSubsystem, driveSubsystem));
-    
+  
     Shuffleboard.getTab("Auto").add("Auto Chooser", autoChooser);
   }
 

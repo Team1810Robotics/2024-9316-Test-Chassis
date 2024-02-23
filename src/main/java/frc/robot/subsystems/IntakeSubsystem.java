@@ -1,6 +1,12 @@
 package frc.robot.subsystems;
 
 
+import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,6 +25,11 @@ public class IntakeSubsystem extends SubsystemBase {
     private DigitalInput lowerLS;
     private DigitalInput noteDetector;
 
+    boolean x;
+
+    GenericEntry intakeSensor;
+    GenericEntry intakeSpeed;
+
 
     public IntakeSubsystem() {
         intakeMotors = new Relay(IntakeConstants.INTAKE_MOTORS);
@@ -31,6 +42,9 @@ public class IntakeSubsystem extends SubsystemBase {
         lowerLS = new DigitalInput(IntakeConstants.LOWER_LS);
         noteDetector = new DigitalInput(IntakeConstants.NOTE_DETECTOR);
 
+        ShuffleboardTab tab = Shuffleboard.getTab("Tab");
+        intakeSensor = tab.add("intakeSensor", x).getEntry();
+        intakeSpeed = tab.add("intakeSpeed", intakeRunning()).getEntry();
 
     }
 
@@ -42,6 +56,23 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void reverseIntake() {
         intakeMotors.set(Relay.Value.kForward);
+    }
+@Override
+    public void periodic() {
+        x = getNoteDetector();
+        intakeSensor.setBoolean(x);
+        intakeSpeed.setBoolean(intakeRunning());
+    }
+
+    public boolean intakeRunning() {
+        intakeMotors.get();
+        Relay.Value speed = intakeMotors.get();
+        if (speed == Relay.Value.kOn) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 

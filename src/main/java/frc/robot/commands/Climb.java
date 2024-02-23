@@ -21,5 +21,10 @@ public class Climb extends Command {
     public void execute() {
         climbSubsystem.climb(upDown);
     }
+
+    @Override 
+    public void end(boolean interrupted) {
+        climbSubsystem.stop();
+    }
     
 }
