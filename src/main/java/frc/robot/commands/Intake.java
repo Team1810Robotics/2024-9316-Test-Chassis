@@ -28,13 +28,14 @@ public class Intake extends Command {
             intakeSubsystem.reverseIntake();
         } else {
             intakeSubsystem.intake();
+            System.out.println("test");
         }
     }
 
     @Override
     public boolean isFinished() {
         boolean noteCurrent = intakeSubsystem.getNoteDetector();
-        if (noteCurrent && !ignoreNote) {
+        if (!noteCurrent && !ignoreNote) {
             return true;
         } else {
             return false;

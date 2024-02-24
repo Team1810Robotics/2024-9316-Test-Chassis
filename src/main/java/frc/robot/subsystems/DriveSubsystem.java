@@ -12,6 +12,8 @@ public class DriveSubsystem extends SubsystemBase {
     private Talon leftMotors;
     private Talon rightMotors;
 
+    private IntakeSubsystem intakeSubsystem;
+
 
 
 
@@ -37,6 +39,15 @@ public class DriveSubsystem extends SubsystemBase {
         rightMotors.set(speeds.right);
 
 
+    }
+
+    public void driveAutoGrab() {
+        boolean noteCurrent = intakeSubsystem.getNoteDetector();
+         if (!noteCurrent) {
+            drive(-.5, -.5);
+         } else {
+            drive(.5, .5);
+         }
     }
     
 
